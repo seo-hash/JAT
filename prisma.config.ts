@@ -1,12 +1,11 @@
-// import "dotenv/config";
-// import { defineConfig } from "prisma/config";
+import "dotenv/config";
+import { defineConfig } from "prisma/config";
+import path from "path";
 
-// export default defineConfig({
-//   // Aggiungi il ./ davanti ai percorsi
-//   schema: "./prisma/schema.prisma", 
-//   migrations: {
-//     path: "./prisma/migrations",
-//   },
-// });
-// Per ora disabilitiamo la config personalizzata per vedere se il build passa
-export default {};
+export default defineConfig({
+  // path.join assicura che il percorso sia corretto su qualsiasi sistema (Windows o Linux/Vercel)
+  schema: path.join(process.cwd(), "prisma", "schema.prisma"),
+  migrations: {
+    path: path.join(process.cwd(), "prisma", "migrations"),
+  },
+});
